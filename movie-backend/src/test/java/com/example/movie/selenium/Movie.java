@@ -1,3 +1,5 @@
+package com.example.movie.selenium;
+
 import lombok.Builder;
 
 @Builder
