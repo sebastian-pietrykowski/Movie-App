@@ -27,8 +27,17 @@ jobs:
         working-directory: ./movie-frontend
       - run: npm start &
         working-directory: ./movie-frontend
+
+      - name: Set up Java version for backend
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      - name: Build backend
+        run: mvn spring-boot:run
+        working-directory: ./movie-backend
     
-      - name: Set up Java version
+      - name: Set up Java version for tests
         uses: actions/setup-java@v1
         with:
           java-version: '21'
