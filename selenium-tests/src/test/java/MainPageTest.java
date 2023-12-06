@@ -4,12 +4,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MainPageTest {
 
@@ -27,6 +33,9 @@ public class MainPageTest {
 
     @FindBy(xpath = "//div[contains(@class, 'container')]//a[contains(text(), 'Create movie')]")
     private WebElement createMovieButton;
+
+    @FindBy(xpath = "//div[contains(@class, 'card')]")
+    private WebElement card;
 
     @BeforeAll
     static void setUpCrudAutomatedTests() {
@@ -97,5 +106,29 @@ public class MainPageTest {
         // then
         String actualUrl = driver.getCurrentUrl();
         Assertions.assertThat(actualUrl).isEqualTo(createMovieUrl);
+    }
+
+    @Test
+    void when_clickedDelete_then_deletesMovie() throws InterruptedException {
+        // given
+        driver.get(movieListUrl);
+        WebElement deleteButtonInList = card.findElement(
+                By.xpath(".//ul/li/div/div/button[contains(text(), 'Delete')]")
+        );
+        WebElement titleElement = card.findElement(
+                By.xpath(".//div/h5[contains(@class, 'card-title')]")
+        );
+        String title = titleElement.getText();
+
+        // when
+        deleteButtonInList.click();
+        Thread.sleep(1000);
+
+        String titleXPath = String.format(
+                "//*[contains(text(), '%s')]",
+                title
+        );
+        Assertions.assertThatThrownBy(() ->  driver.findElement(By.xpath(titleXPath)).isDisplayed())
+                .isInstanceOf(NoSuchElementException.class);
     }
 }

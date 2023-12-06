@@ -19,7 +19,6 @@ import java.time.Duration;
 public class CreateMoviePageTest {
     private static final ChromeOptions chromeOptions = new ChromeOptions();
     private WebDriver driver;
-    private static final String baseUrl = "http://localhost:4200";
     private static final String movieListUrl = "http://localhost:4200/movies/list";
     private static final String createMovieUrl = "http://localhost:4200/movies/create";
 
