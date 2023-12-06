@@ -28,20 +28,11 @@ jobs:
       - run: npm start &
         working-directory: ./movie-frontend
 
-      - name: Set up Java version for backend
+      - name: Set up Java version for backend and tests
         uses: actions/setup-java@v1
         with:
           java-version: '17'
 
-      - name: Build and test with Maven for backend
-        run: nohup mvn spring-boot:run
-        working-directory: ./movie-backend
-    
-      - name: Set up Java version for tests
-        uses: actions/setup-java@v1
-        with:
-          java-version: '21'
-
-      - name: Build and test with Maven for tests
+      - name: Build and test with Maven for backend and tests
         run: mvn clean test
-        working-directory: ./selenium-tests
+        working-directory: ./movie-backend
