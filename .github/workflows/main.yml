@@ -1,0 +1,38 @@
+name: Check if working
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: movie-frontend/package-lock.json
+      - run: npm ci
+        working-directory: ./movie-frontend
+      - run: npm run build --if-present
+        working-directory: ./movie-frontend
+      - run: npm start &
+        working-directory: ./movie-frontend
+
+      - name: Set up Java version for backend and tests
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      - name: Build and test with Maven for backend and tests
+        run: mvn clean test
+        working-directory: ./movie-backend
