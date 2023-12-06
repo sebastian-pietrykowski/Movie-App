@@ -57,7 +57,6 @@ public class MovieSeleniumTest {
 
     @BeforeAll
     static void setUpCrudAutomatedTests() {
-        System.setProperty("webdriver.http.factory", "jdk-http-client");
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-gpu");
         WebDriverManager.chromedriver().setup();
