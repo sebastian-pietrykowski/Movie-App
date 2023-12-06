@@ -10,7 +10,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'movies/add',
+    path: 'movies/create',
     loadComponent: () =>
       import('./movie/components/create-movie/create-movie.component').then(
         c => c.CreateMovieComponent

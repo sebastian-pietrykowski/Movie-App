@@ -24,8 +24,8 @@ export class MovieListComponent implements OnInit {
     this.movies$ = this.movieService.getMovies();
   }
 
-  addMovie() {
-    this.router.navigate(['movies', 'add']).then();
+  createMovie() {
+    this.router.navigate(['movies', 'create']).then();
   }
 
   updateMovie(id: number) {

@@ -62,7 +62,7 @@ export class CreateMovieComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(100),
+          Validators.maxLength(500),
         ],
       ],
       lengthInMinutes: [
