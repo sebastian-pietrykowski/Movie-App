@@ -1,0 +1,67 @@
+<div class="container py-md-5 py-3">
+  <form [formGroup]="movieForm">
+    <div class="form-group d-flex justify-content-center">
+      <div class="col-6">
+        <div class="mb-3">
+          <label for="title-input">Title</label>
+          <input
+            id="title-input"
+            type="text"
+            class="form-control"
+            formControlName="title"
+            aria-describedby="title-input"
+            placeholder="Enter title" />
+          <small *ngIf="movieForm.get('title')?.errors">
+            Name must be between 3 and 30 letters long.
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="description-input">Description</label>
+          <input
+            id="description-input"
+            type="text"
+            class="form-control"
+            formControlName="description"
+            aria-describedby="description-input"
+            placeholder="Enter description" />
+          <small *ngIf="movieForm.get('description')?.errors">
+            Description must be between 3 and 100 letters long.
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="length-input">Length in minutes</label>
+          <input
+            id="length-input"
+            type="text"
+            class="form-control"
+            formControlName="lengthInMinutes"
+            aria-describedby="length-in-minutes-input"
+            placeholder="Enter length in minutes" />
+          <small *ngIf="movieForm.get('lengthInMinutes')?.errors">
+            Length in minutes must be between 10 and 300.
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="release-year-input">Release year</label>
+          <input
+            id="release-year-input"
+            type="text"
+            class="form-control"
+            formControlName="releaseYear"
+            aria-describedby="release-year-input"
+            placeholder="Enter release year" />
+          <small *ngIf="movieForm.get('releaseYear')?.errors">
+            Release year must be between 1850 and 2030.
+          </small>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="movieForm.invalid"
+          (click)="createMovie()">
+          Create
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

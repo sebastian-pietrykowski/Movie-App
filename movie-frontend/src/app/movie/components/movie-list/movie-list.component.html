@@ -1,0 +1,54 @@
+<div class="container py-md-5 py-3">
+  <button class="btn btn-primary mb-xl-5 mb-sm-4 mb-3" (click)="addMovie()">Add movie</button>
+  <div class="row g-xl-5 g-sm-4 g-3">
+
+    <div
+      *ngFor="let movie of movies$ | async"
+      class="col-md-4 col-sm-6 col-12 h-200">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <div
+                class="col-4 d-flex align-items-center justify-content-start">
+                Length
+              </div>
+              <div
+                class="col-8 d-flex align-items-center justify-content-center">
+                {{ movie.lengthInMinutes }} min
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div
+                class="col-4 d-flex align-items-center justify-content-start">
+                Release year
+              </div>
+              <div
+                class="col-8 d-flex align-items-center justify-content-center">
+                {{ movie.releaseYear }}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item container">
+            <div class="container">
+              <div class="d-flex justify-content-center gap-4">
+                <a class="btn btn-primary" (click)="updateMovie(movie.id)">Update</a>
+                <button class="btn btn-danger" (click)="deleteMovie(movie.id)">Delete</button>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
