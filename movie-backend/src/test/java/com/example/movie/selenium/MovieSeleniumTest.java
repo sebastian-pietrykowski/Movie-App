@@ -89,6 +89,7 @@ public class MovieSeleniumTest {
 
         // when
         titleInput.sendKeys(movie.title());
+        Thread.sleep(1000);
         descriptionInput.sendKeys(movie.description());
         lengthInMinutesInput.sendKeys(movie.lengthInMinutes().toString());
         releaseYearInput.sendKeys(movie.releaseYear().toString());
