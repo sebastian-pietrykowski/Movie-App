@@ -59,6 +59,7 @@ public class MovieSeleniumTest {
     static void setUpCrudAutomatedTests() {
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-gpu");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
         WebDriverManager.chromedriver().setup();
     }
 
