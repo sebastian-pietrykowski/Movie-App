@@ -60,7 +60,6 @@ public class MovieSeleniumTest {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-gpu");
-        chromeOptions.addArguments("--disable-dev-shm-usage");
         WebDriverManager.chromedriver().setup();
     }
 
@@ -89,7 +88,6 @@ public class MovieSeleniumTest {
 
         // when
         titleInput.sendKeys(movie.title());
-        Thread.sleep(1000);
         descriptionInput.sendKeys(movie.description());
         lengthInMinutesInput.sendKeys(movie.lengthInMinutes().toString());
         releaseYearInput.sendKeys(movie.releaseYear().toString());
