@@ -273,5 +273,3 @@ public class MovieSeleniumTest {
                 .isInstanceOf(NoSuchElementException.class);
     }
 }
-
-
